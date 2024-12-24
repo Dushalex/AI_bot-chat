@@ -1,0 +1,103 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Chat</title>
+    <link rel="stylesheet" href="{% static 'chat.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h3 style="line-height:300%;"></h3>
+        <!-- Верхнее меню -->
+        <header>
+            <nav>
+                <ul>
+                    <li><a href="#">Главная</a></li>
+                    <li><a href="#">Редактор</a></li>
+                    <li><a href="#">Мои конспекты</a></li>
+                    <li><a href="#">Настройки</a></li>
+                    <li><a href="#">Поддержка</a></li>
+                </ul>
+            </nav>
+        </header>
+    <div id="container">
+        <!-- Левое меню (История файлов) -->
+        <aside id="left-menu">
+            <h2>История файлов</h2>
+            <ul>
+                <li>file1.docx</li>
+                <li>video1.mp4</li>
+                <li>summary.txt</li>
+                <li>audio1.wav</li>
+                <li>new_file.pdf</li>
+            </ul>
+        </aside>
+
+        <!-- Основной чат -->
+        <main id="chat-container">
+            <h1>NOTE BUDDY</h1>
+            <div id="chat-box"></div>
+            <div id="controls">
+                <input type="text" id="message" placeholder="Введите сообщение...">
+                <button id="send">Отправить</button>
+            </div>
+        </main>
+
+        <!-- Правая панель (Инструменты и история чатов) -->
+        <aside id="right-panel">
+            <div class="note-buddy-box">
+                <img src="{% static 'Лого бадди.png' %}" alt="NoteBuddy Logo">
+                <p>Добро пожаловать! Я твой интеллектуальный помощник. Отправь мне свои материалы, я помогу создать конспект.</p>
+            </div>
+            <h2>Инструменты</h2>
+            <button id="new-chat">Новый чат</button>
+            <button id="upload-file">Загрузить файл</button>
+            <button id="summarize">Пересказать</button>
+
+            <h2>История чатов</h2>
+            <ul>
+                <li>Чат с файлом 1</li>
+                <li>Чат с видео</li>
+                <li>Текстовый чат</li>
+            </ul>
+
+        </aside>
+    </div>
+
+    <script>
+        const chatBox = document.getElementById('chat-box');
+        const messageInput = document.getElementById('message');
+        const sendButton = document.getElementById('send');
+
+        sendButton.addEventListener('click', () => {
+            const userMessage = messageInput.value;
+            if (userMessage.trim()) {
+                const userElement = document.createElement('div');
+                userElement.textContent = userMessage;
+                userElement.classList.add('user-message');
+                chatBox.appendChild(userElement);
+
+                fetch('', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                        'X-CSRFToken': '{{ csrf_token }}'
+                    },
+                    body: new URLSearchParams({ 'message': userMessage })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    const aiElement = document.createElement('div');
+                    aiElement.textContent = data.message || "Ошибка при обработке.";
+                    aiElement.classList.add('ai-message');
+                    chatBox.appendChild(aiElement);
+                    chatBox.scrollTop = chatBox.scrollHeight;
+                });
+                messageInput.value = '';
+            }
+        });
+    </script>
+</body>
+</html>

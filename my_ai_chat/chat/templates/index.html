@@ -1,0 +1,58 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Assistant</title>
+    <link rel="stylesheet" href="{% static 'main.css' %}">
+</head>
+<body>
+    <div class="container">
+        <!-- Верхнее меню -->
+        <header>
+            <nav>
+                <ul>
+                    <li><a href="#">Главная</a></li>
+                    <li><a href="#">Редактор</a></li>
+                    <li><a href="#">Мои конспекты</a></li>
+                    <li><a href="#">Настройки</a></li>
+                    <li><a href="#">Поддержка</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <!-- Основное содержимое -->
+        <div class="main-content">
+            <!-- Логотип и приветственное сообщение -->
+            <div class="logo-section">
+                <img src="{% static 'Лого бадди.png' %}" alt="NoteBuddy Logo" class="logo">
+                <div class="message-box">
+                    <p>Привет! Я интеллектуальный помощник для создания конспектов.</p>
+                </div>
+            </div>
+
+            <!-- Перейти в чат -->
+            <div class="chat-btn-container">
+                <a href="{% url 'chat' %}" class="chat-btn">Перейти в чат</a>
+            </div>
+        </div>
+
+        <!-- Блок с регистрацией и входом -->
+        <div class="auth-container">
+            <div class="auth-box">
+                <button class="auth-btn">Вход</button>
+                <button class="auth-btn">Регистрация</button>
+
+                <div class="auth-form">
+                    <input type="text" placeholder="Логин">
+                    <input type="password" placeholder="Пароль">
+                    <button class="submit-btn">Войти</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+

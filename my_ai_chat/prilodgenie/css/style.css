@@ -1,0 +1,133 @@
+/* Общие стили */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: #e0f4ff;
+    color: #333;
+}
+
+/* Контейнер страницы */
+.container {
+    max-width: 900px;
+    margin: 20px auto;
+    padding: 10px;
+    background-color: #f4faff;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Верхнее меню */
+header {
+    background: linear-gradient(to right, #52b6ff, #4285f4);
+    padding: 10px;
+    border-radius: 15px 15px 0 0;
+}
+
+nav ul {
+    display: flex;
+    justify-content: space-around;
+    list-style: none;
+}
+
+nav a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+/* Блок AI ассистента */
+.ai-section {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    gap: 20px;
+}
+
+.ai-avatar {
+    width: 100px;
+    height: 100px;
+    background-color: #4285f4;
+    border-radius: 50%;
+    position: relative;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.ai-avatar .circle {
+    width: 50px;
+    height: 50px;
+    background-color: #74c0fc;
+    border-radius: 50%;
+    position: absolute;
+    top: 25%;
+    left: 25%;
+}
+
+.chat-area {
+    flex: 1;
+    text-align: left;
+}
+
+.chat-btn {
+    background-color: #74c0fc;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin-top: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 1em;
+}
+
+.chat-btn:hover {
+    background-color: #52b6ff;
+}
+
+/* Блок истории */
+.history-section {
+    padding: 10px 20px;
+}
+
+.history-container {
+    background-color: #f0f8ff;
+    padding: 10px;
+    border-radius: 10px;
+    margin-top: 10px;
+}
+
+.history-container ul {
+    list-style: none;
+}
+
+.history-container li {
+    background-color: #e0f4ff;
+    padding: 8px;
+    margin: 5px 0;
+    border-radius: 5px;
+}
+
+/* Нижний блок */
+.bottom-section {
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 20px;
+}
+
+.options button {
+    background-color: #74c0fc;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 1em;
+}
+
+.options button:hover {
+    background-color: #52b6ff;
+}
