@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import JsonResponse
+from .soni import AI
 
 
 # Представление для главной страницы
@@ -17,9 +18,9 @@ def chat_view(request):
             with open("uploaded_file", "wb") as f:
                 for chunk in file.chunks():
                     f.write(chunk)
-            return JsonResponse({"response": "Файл обработан успешно"})
+            return JsonResponse({"message": "Файл обработан успешно"})
         elif user_message:
             # Обработка текстового сообщения
-            response = f"Вы отправили текст: {user_message}"
-            return JsonResponse({"response": response})
+            response = AI(user_message)
+            return JsonResponse({"message": response})
     return render(request, 'chat.html')  # Отображение страницы чата
